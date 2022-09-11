@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="com.chenxiaohui" />
+    <!--<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+          destroy-method="close">
+        <property name="driverClassName" value="org.h2.Driver"/>
+        <property name="url" value="jdbc:h2:mem:testdb"/>
+        <property name="username" value="SA"/>
+        <property name="password" value=""/>
+    </bean>-->
+    <!--使用设值注入-->
+    <bean id="Mocha" class="com.chenxiaohui.homework2.model.Coffee">
+        <property name="id" value="1"/>
+        <property name="name" value="摩卡-设值注入"/>
+        <property name="price" value="20.0"/>
+        <property name="createTime" value="2022-09-01"/>
+        <property name="updateTime" value="2022-09-01"/>
+    </bean>
+    <!--使用构造注入-->
+    <bean id="CoffeeAttribute" class="com.chenxiaohui.homework2.model.CoffeeAttribute">
+        <constructor-arg  name="countryOfOrigin" value="法国"/>
+        <constructor-arg  name="coffeeName" value="摩卡-构造注入"/>
+        <constructor-arg  name="farm" value="巴黎农场"/>
+        <constructor-arg  name="manufacturer" value="文思海辉"/>
+    </bean>
+    <bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+        <property name="propertyEditorRegistrars">
+            <list>
+                <bean class="com.chenxiaohui.homework2.handler.MyPropertyEditorRegistrar"/>
+            </list>
+        </property>
+    </bean>
+</beans>
